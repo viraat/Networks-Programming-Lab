@@ -3,6 +3,7 @@ This file explains all the system calls and functions used in socket programming
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->SOCKET
+
 The socket() call creates an unnamed socket and returns a file descriptor to the calling process.  The function prototype is as follows:
 
     int socket(int domain, int type, int protocol);
@@ -16,6 +17,7 @@ This establishes a socket in the Internet domain, and configures it for stream-o
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->AF_INET
+
 AF_INET is the address family that is used for the socket you're creating (in this case an Internet Protocol address). The Linux kernel, for example, supports 29 other address families such as UNIX sockets and IPX, and also communications with IRDA and Bluetooth (AF_IRDA and AF_BLUETOOTH, but it is doubtful you'll use these at such a low level).
 
 For the most part sticking with AF_INET for socket programming over a network is the safest option.
@@ -23,12 +25,14 @@ For the most part sticking with AF_INET for socket programming over a network is
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->BZERO
+
  bzero((char *) &serv_addr, sizeof(serv_addr));
 The function bzero() sets all values in a buffer to zero. It takes two arguments, the first is a pointer to the buffer and the second is the size of the buffer. Thus, this line initializes serv_addr to zeros.
 
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->SOCKADDR_IN
+
 /* a structure to contain an internet address 
    defined in the include file in.h */
 struct sockaddr_in {
@@ -45,6 +49,7 @@ struct in_addr {
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->ATOI
+
      portno = atoi(argv[1]);
 The port number on which the server will listen for connections is passed in as an argument, and this statement uses the atoi() function to convert this from a string of digits to an integer.
 
@@ -65,6 +70,7 @@ This call binds the socket sockfd to the address contained in the structure name
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->LISTEN
+
 The listen() system call establishes the size of the incoming request queue.  Although the listen() call is not strictly necessary, it is commonly used.  The function prototype is as follows:
 
     int listen(int s, int backlog);
@@ -78,6 +84,7 @@ This call specifies that the socket sockfd will queue up to MAXCONNECT requests.
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->HTONS
+
 Because systems may use different byte-ordering for data objects such as numbers, functions have been created to allow systems to communicate using a standardized network-order format.  Here is the function prototype for one of them:
 
     uint16_t htons(uint16_t hostshort);
@@ -96,12 +103,14 @@ ntohl()- network to host long
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->FOR(;;)
+
 It's an infinite loop, equivalent to while(true). When no termination condition is provided, the condition defaults to true.
 
 -----------------------------------------------------------------------------------------------------------------------------
 
 -->ACCEPT
-Finally, the accept() system call causes the server process to block until a client attempts to connect.  The function prototype is as follows:
+
+The accept() system call causes the server process to block until a client attempts to connect.  The function prototype is as follows:
 
     int accept(int s, struct sockaddr *addr, socklen_t *addrlen);
 
