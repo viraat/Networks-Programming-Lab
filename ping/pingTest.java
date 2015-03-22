@@ -5,7 +5,7 @@ class pingTest {
 
     public static void main(String[] args) {
 
-        String ip = "192.168.1.100";
+        String ip = "8.8.8.8";
         String pingResult = "";
 
         String pingCmd = "ping " + ip;
