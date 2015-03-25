@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     }
     serv_addr.sin_family=AF_INET;
     serv_addr.sin_port=htons(atoi(argv[1]));
-    serv_addr.sin_addr.s_addr=inet_addr("49.204.40.9");
+    serv_addr.sin_addr.s_addr=inet_addr("192.168.11.100");
     if( bind(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0 )
     {
         perror("Error in Server "); exit(1);
@@ -57,7 +57,6 @@ int main(int argc, char *argv[])
                 if((write(new,"\n",1))<0)
                 perror("write error");
             }
-                    //exit(0);
         }
         close(new);
     }
