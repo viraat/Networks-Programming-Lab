@@ -9,25 +9,32 @@
 int main(int argc,char *argv[])
 {
   int s;
-  struct sockaddr_in server,addr;
+  struct sockaddr_in server;
+  struct sockaddr_storage addr;
   socklen_t len;
-  s = socket( AF_INET, SOCK_STREAM, 0 );
-  if( s == -1 )
-  { 
-    perror("socket"); 
-    exit(1); 
+  int port;
+  char ipstr[INET_ADDRSTRLEN];
+  s=socket(AF_INET,SOCK_STREAM,0);
+  if(s==-1)
+  {
+    perror("socket");
+    exit(1);
   }
-  server.sin_family = AF_INET;
+  server.sin_family=AF_INET;
   inet_aton("192.168.11.100",&server.sin_addr);
-  server.sin_port = htons( atoi(argv[1]) );
-  if( connect(s,(struct sockaddr *)&server,sizeof(server)) < 0 )
-  { 
-    perror("connect"); 
+  server.sin_port=htons(atoi(argv[1]));
+  if((connect(s,(struct sockaddr *)&server,sizeof(server)))<0)
+  {
+    perror("connect");
     exit(0);
   }
-  len = sizeof(addr);
+  len=sizeof(addr);
   getpeername(s,(struct sockaddr *)&addr,&len);
-  printf("peer IP address:%s\n",inet_ntoa(addr.sin_addr));
-  printf("peer port:%d\n",ntohs(addr.sin_port));
+  if (addr.ss_family == AF_INET) {
+  struct sockaddr_in *s = (struct sockaddr_in *)&addr;
+  port = ntohs(s->sin_port);
+  inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof ipstr);}
+  printf("Peer IP address: %s\n", ipstr);
+  printf("Peer port      : %d\n", port);
   return 0;
-} 
+}
