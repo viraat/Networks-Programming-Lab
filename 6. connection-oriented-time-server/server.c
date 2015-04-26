@@ -35,8 +35,8 @@ int main(int argc,char *argv[])
         }
          if(listen(ls,5)<0)
         {
-        perror("listen");
-        exit(0);
+            perror("listen");
+            exit(0);
         }
         while(1)
         {
