@@ -17,7 +17,7 @@ int main(int argc, char * argv[])
 	bzero( (char *)&remote, sizeof(remote) );
 	remote.sin_family = AF_INET;
 	remote.sin_port = htons( (short)atoi( argv[1] ) );
-	remote.sin_addr.s_addr = inet_addr("192.168.11.100");
+	remote.sin_addr.s_addr = inet_addr("127.0.0.0");
 	t = sizeof(remote);
 	while ( printf(">"), fgets(str, 100, stdin), !feof(stdin) )
 	{

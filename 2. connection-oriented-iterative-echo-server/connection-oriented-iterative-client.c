@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     bzero((char *)&rem, sizeof(rem));
     rem.sin_family = AF_INET;
     rem.sin_port = htons(atoi(argv[1]));
-    rem.sin_addr.s_addr = inet_addr("192.168.11.100");
+    rem.sin_addr.s_addr = inet_addr("127.0.0.0");
     a = connect(s, (struct sockaddr *)&rem, sizeof(rem));
     if (a == -1)
     {

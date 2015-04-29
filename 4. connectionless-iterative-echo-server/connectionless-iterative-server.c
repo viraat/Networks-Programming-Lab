@@ -18,7 +18,7 @@ int main(int argc, char * argv[ ])
     bzero( (char *)&local, sizeof( local ) );
     local.sin_family = AF_INET;
     local.sin_port = htons( atoi( argv[1] ));
-    local.sin_addr.s_addr = inet_addr("192.168.11.100");
+    local.sin_addr.s_addr =inet_addr("127.0.0.1");
     if ( bind(s, (struct sockaddr *)&local, sizeof(local)) == -1 )
     { perror("bind"); exit(1); }
     t = sizeof(remote);
